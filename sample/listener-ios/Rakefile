@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios'
+
+require '../../lib/motion-sensoro.rb'
+
+begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'Sensoro Listener'
+
+  user_profile = ENV['USER'] + '.mobileprovision'
+  if File.exist?(user_profile)
+    app.provisioning_profile = user_profile
+  end
+
+  app.info_plist['NSLocationWhenInUseUsageDescription'] = "Required to access location services"
+  app.info_plist['NSLocationAlwaysUsageDescription'] = "Required to access location services"
+end
