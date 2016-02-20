@@ -24,7 +24,6 @@ class SensoroBeaconManagerListener
       obj.minor = beacon.getMinor
       obj.serial_number = beacon.getSerialNumber
       obj.battery_level = beacon.getBatteryLevel
-      obj.remaining_lifetime = beacon.getRemainingLifetime
       obj.firmware_version = beacon.getFirmwareVersion
       obj.temperature = beacon.getTemperature
       obj.light = beacon.getLight
