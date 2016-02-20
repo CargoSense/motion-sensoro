@@ -25,7 +25,7 @@ SensoroBeaconManager.start_listening do |what, beacon|
   case what
      when :beacon_found
         puts "Found beacon! #{beacon}"
-     when beacon_lost
+     when :beacon_lost
         puts "Lost beacon! #{beacon}"
   end
 end
