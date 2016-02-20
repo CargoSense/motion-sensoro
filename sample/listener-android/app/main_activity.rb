@@ -7,12 +7,11 @@ class MainActivity < Android::App::ListActivity
 
     SensoroBeaconManager.context = self
     SensoroBeaconManager.start_listening do |what, beacon|
-      serial = beacon.serialNumber
       case what
         when :beacon_found
-          handle.post -> { listAdapter.add(serial) }
+          handle.post -> { listAdapter.add(beacon.serial_number) }
         when :beacon_lost
-          handle.post -> { listAdapter.remove(serial) }
+          handle.post -> { listAdapter.remove(beacon.serial_number) }
       end
     end
   end

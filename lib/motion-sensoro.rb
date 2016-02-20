@@ -18,4 +18,5 @@ Motion::Project::App.setup do |app|
     else
       raise "Project template #{Motion::Project::App.template} not supported by motion-sensoro"
   end
+  app.files << File.join(File.dirname(__FILE__), 'sensoro_beacon.rb')
 end

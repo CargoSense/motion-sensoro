@@ -1,18 +1,38 @@
 class SensoroBeaconManagerListener
   def initialize(callback)
     @callback = callback
+    @cache = {}
   end
 
   def beaconManager(manager, didRangeNewBeacon:beacon)
-    @callback.call :beacon_found, beacon
+    @callback.call :beacon_found, _beacon(beacon)
   end
 
   def beaconManager(manager, beaconDidGone:beacon)
-    @callback.call :beacon_lost, beacon
+    @callback.call :beacon_lost, _beacon(beacon)
   end
 
   def beaconManager(manager, scanDidFinishWithBeacons:beacons)
     # TODO: refresh beacon sensors info
+  end
+
+  def _beacon(beacon)
+    @cache[beacon.serialNumber] ||= begin
+      obj = SensoroBeacon.new
+      obj.uuid = beacon.beaconID.proximityUUID
+      obj.major = beacon.beaconID.major
+      obj.minor = beacon.beaconID.minor
+      obj.serial_number = beacon.serialNumber
+      obj.battery_level = beacon.batteryLevel
+      obj.firmware_version = beacon.firmwareVersion
+      obj.temperature = beacon.temperature
+      obj.light = beacon.light
+      obj.accelerometer_count = beacon.accelerometerCount
+      obj.accuracy = beacon.accuracy
+      obj.rssi = beacon.rssi
+      obj.model_name = beacon.hardwareModelName
+      obj
+    end
   end
 end
 

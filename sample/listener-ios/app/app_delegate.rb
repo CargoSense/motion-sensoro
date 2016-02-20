@@ -20,12 +20,11 @@ class BeaconsController < UITableViewController
   CellIdentifier = "beacons"
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) || begin
-      cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:CELLID)
+      cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:CellIdentifier)
       cell.selectionStyle = UITableViewCellSelectionStyleBlue
       cell
     end
-
-    cell.textLabel.text = @beacons[indexPath.row].serialNumber
+    cell.textLabel.text = @beacons[indexPath.row].serial_number
     cell
   end
 end
