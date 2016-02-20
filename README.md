@@ -6,11 +6,19 @@ It provides a simple Ruby DSL on top of the SDK APIs that works both on iOS and 
 
 ## Usage
 
+You can either manually install the gem:
+
 ```
 $ gem install motion-sensoro
 ```
 
-Then include `motion-sensoro in your RubyMotion project's Gemfile or Rakefile. 
+Then require it in your project's Rakefile:
+
+```ruby
+require 'motion-sensoro'
+```
+
+Or add `motion-sensoro` into your `Gemfile` then run `bundle`.
 
 ## API reference
 
